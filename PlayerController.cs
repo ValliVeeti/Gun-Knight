@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1.0f;
+    //Smooth factor breaks movement into smaller steps to smooth it
     public float smoothFactor = 0.04f;
     public int opposite = -1;
     public int bulletSpeed = 10;
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
     public IEnumerator Recoil()
     {
-
+//The movement of the game happens into the opposite direction of the mouse click
         isMoving = true;
 
         float step = speed * smoothFactor;
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
     }
     void Shoot(Vector2 mouse)
     {     
+    //Spawns the bullet and turns the sprite according to direction of the click
         GameObject Bullet = Instantiate(projectile, transform.position, Quaternion.identity);
 
         if (mouse.x < transform.position.x)
@@ -114,6 +116,7 @@ public class PlayerController : MonoBehaviour
     }
     public void getDamage()
     {
+    //Counts damage and activates small invincibility window when done so
 
         if (invincible == true)
         {
