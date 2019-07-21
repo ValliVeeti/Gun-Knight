@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+//Checks if an intance of gamemanager already exists
         if(instance == null)
         {
             instance = this;
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator WaitforMouse()
     {
+    //Makes the spawners not activate before the player has clicked in the game
         bool done = false;
         while (done != true)
         {
