@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public IEnumerator Spawner()
     {
+    //Spawns enemies on random interval between min and max values
         while (true)
         {
             Debug.Log("Spawner started");
