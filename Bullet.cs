@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnBecameInvisible()
     {
+    //Deletes the bullet if it goes off screen
         Destroy(gameObject);
     }
 }
