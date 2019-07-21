@@ -46,6 +46,8 @@ public class EnemyController : MonoBehaviour
     {
         GameObject Player = GameObject.Find("Player");
         PlayerController player = Player.GetComponent<PlayerController>();
+        //Checks if the player is in hitrange and moves into damage coroutine if true, otherwise continues walking
+        
         if (Vector2.Distance(player.transform.position, transform.position) < (hitRange - 0.5f))
         {
             StartCoroutine(Damage());
@@ -54,6 +56,7 @@ public class EnemyController : MonoBehaviour
         else if(Vector2.Distance(player.transform.position, transform.position) > (hitRange - 0.5f))
         {
             walking = true;
+            //smoothFactor smooths the walking by breaking it into smaller steps
             float step = speed * smoothFactor;
 
             for (int steps = 0; steps < 5; steps++)
@@ -74,6 +77,7 @@ public class EnemyController : MonoBehaviour
     {
         dealingDamage = true;
         yield return new WaitForSeconds(0.5f);
+        //Gives the player time to move out of the damage area
         GameObject Player = GameObject.Find("Player");
         PlayerController player = Player.GetComponent<PlayerController>();
         if (Vector2.Distance(player.transform.position, transform.position) < (hitRange - 0.5f))
@@ -98,6 +102,7 @@ public class EnemyController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
+    //Kills the enemy if it comes into contact with a bullet
         if (col.gameObject.CompareTag("Bullet"))
         {
             GameObject Player = GameObject.Find("Player");
@@ -111,7 +116,7 @@ public class EnemyController : MonoBehaviour
     }
     public IEnumerator DamageCooldown()
     {
-       
+       //Makes enemies attack slower
         yield return new WaitForSeconds(3);
 
         dealingDamage = false;
